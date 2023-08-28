@@ -9,9 +9,12 @@ let messageV=document.getElementById("message")
 let sumV=document.querySelector("#sum-p")
 let cardsV=document.querySelector("#cards-p")
 
-function start(){
+function run(){
     sumV.textContent="Sum: " + sum;
-    cardsV.textContent="Cards: "+cards[0]+ " & " +cards[1];
+    cardsV.textContent="Cards: ";
+    for(let i=0;i<cards.length;i++){
+        cardsV.textContent+=cards[i]+ " "
+    }
     if(sum<=20)
         message="Do you want to draw a new card? 🙂"
     else if(sum===21)
@@ -22,11 +25,17 @@ function start(){
     }
     messageV.textContent=message;
 }
-function run(){
-    start()
+function start(){
+    run()
 }
 function newCard(){
-    let card=7;
+    let card=getRandomCard();
     sum+=card;
-    start();
+    cards.push(card)
+    run();
+}
+function getRandomCard(){
+    let rando= Math.floor(Math.random()*13)+1;
+    const result = rando === 1 ? 11 : rando >= 11 && rando <= 13 ? 10:rando;
+    return result;
 }

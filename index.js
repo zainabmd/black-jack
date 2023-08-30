@@ -1,14 +1,28 @@
-let firstCard=10;
-let secondCard=4;
-let cards=[firstCard, secondCard];
-let sum=firstCard+secondCard;
+
+let playerObj={
+    playerName:"Zainab",
+    chips:250
+}
+let cards=[];
+let sum=0;
 let hasBlackJack=false;
-let isAlive=true;
+let isAlive=false;
 let message="";
 let messageV=document.getElementById("message")
 let sumV=document.querySelector("#sum-p")
 let cardsV=document.querySelector("#cards-p")
+let playerV=document.getElementById("player")
 
+playerV.textContent=playerObj.playerName + " : $" + playerObj.chips;
+
+function start(){
+    let firstCard=getRandomCard();
+    let secondCard=getRandomCard();
+    cards=[firstCard,secondCard];
+    sum=firstCard+secondCard;
+    isAlive=true;
+    run()
+}
 function run(){
     sumV.textContent="Sum: " + sum;
     cardsV.textContent="Cards: ";
@@ -25,14 +39,13 @@ function run(){
     }
     messageV.textContent=message;
 }
-function start(){
-    run()
-}
+
 function newCard(){
+    if(isAlive===true&& hasBlackJack===false){
     let card=getRandomCard();
     sum+=card;
     cards.push(card)
-    run();
+    run();}
 }
 function getRandomCard(){
     let rando= Math.floor(Math.random()*13)+1;

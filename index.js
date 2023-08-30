@@ -1,6 +1,6 @@
 
 let playerObj={
-    playerName:"Player 1",
+    playerName:"Player",
     chips:250
 }
 let cards=[];
